@@ -36,6 +36,7 @@ repo_rpm_url, repo_rpm_filename, repo_rpm_package = pgdgrepo_rpm_info
 remote_file "#{Chef::Config[:file_cache_path]}/#{repo_rpm_filename}" do
   source repo_rpm_url
   mode "0644"
+  headers "Host" => URI.parse(source.first).host
 end
 
 # Install the PGDG repository RPM from the local file
